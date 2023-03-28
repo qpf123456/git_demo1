@@ -194,11 +194,11 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>sds
     <div class="right_box">
         <canvas width="600" height="600"></canvas>
     </div>
-
+adfddgdgddf
 </body>
 <script>
     var canvas = document.querySelector('canvas')
@@ -213,23 +213,23 @@
         ctx.beginPath();
         ctx.strokeStyle = "rgb(0,0,0,0)";
         var rote = 45
-        for (var i = 0; i < 9; i++) {
-            if (i % 2 == 0) {
+        for(var i =0;i<9;i++){
+            if (i%2==0) {
                 ctx.fillStyle = "#ffb81c"
                 ctx.moveTo(300, 300);
-                ctx.arc(300, 300, 230, 0, rote * Math.PI / 180, false)
+                ctx.arc(300,300,230,0,rote*Math.PI/180,false)
                 ctx.fill();
                 ctx.beginPath
-            } else {
+            }else{
                 ctx.fillStyle = "#ffd831"
                 ctx.moveTo(300, 300);
-                ctx.arc(300, 300, 230, 0, rote * Math.PI / 180, false)
+                ctx.arc(300,300,230,0,rote*Math.PI/180,false)
                 ctx.fill();
                 ctx.beginPath
             }
-            rote += 45
+            rote+=45
         }
-
+        
     }
 
     // setInterval(fn, 1000);
