@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            width: 100%;
+            background: url(../img/bj.png) no-repeat 0px 0px;
+        }
+
+        .content {
+            float: left;
+            margin: 90px;
+            margin-bottom: 0;
+            background-color: #ff6231;
+            width: 400px;
+            height: 600px;
+            border: 1px solid black;
+            border-image: url(../img/border.png) 45/28px repeat;
+            border-radius: 10px;
+            position: relative;
+            margin-right: 0;
+        }
+
+        .box {
+            width: 350px;
+            height: 500px;
+            background-color: white;
+            margin: 50px auto;
+            overflow: hidden;
+
+        }
+
+        .box2 {
+            /* background-color: aqua; */
+            width: 500px;
+            height: 1000px;
+            overflow: auto;
+        }
+
+        .box3 {
+            width: 350px;
+            height: 1380px;
+            background-color: #ff6231;
+            float: left;
+            overflow: auto;
+        }
+
+        .option {
+            background-color: white;
+            width: 330px;
+            height: 80px;
+            padding: 10px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .option img {
+            width: 70px;
+            height: 80px;
+            float: left;
+        }
+
+        .option div {
+            float: left;
+        }
+
+        .text {
+            margin-left: 10px;
+            /* width: 60px; */
+            height: 70px;
+            display: flex;
+            flex-direction: column;
+            padding-top: 15px;
+        }
+
+        .text-header {
+            color: #ff2c00;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .top {
+            position: absolute;
+            left: 48px;
+            top: -29px;
+        }
+
+        .top-text {
+            position: absolute;
+            font-size: 28px;
+            font-weight: 600;
+            color: white;
+            left: 141px;
+            top: -20px;
+        }
+
+        canvas {
+            border: solid 1px black;
+            display: block;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .right_box {
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+            position: absolute;
+            right: 100px;
+            top: 50px;
+            width: 600px;
+            height: 600px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="content">
+        <div class="top">
+            <img src="../img/1.png" alt="" width="300px">
+        </div>
+        <div class="top-text">
+            奖品列表
+        </div>
+        <div class="box">
+            <div class="box2">
+                <div class="box3">
+                    <div class="option">
+                        <img src="../img/prize_0.png" alt="">
+                        <div class="text">
+                            <div class="text-header">特等奖</div>
+                            <div>华为 Mete 50E Pro</div>
+                        </div>
+                    </div>
+                    <div class="option">
+                        <img src="../img/prize_1.png" alt="">
+                        <div class="text">
+                            <div class="text-header">一等奖</div>
+                            <div>华为 Mete 50E Pro</div>
+                        </div>
+                    </div>
+                    <div class="option">
+                        <img src="../img/prize_2.png" alt="">
+                        <div class="text">
+                            <div class="text-header">二等奖</div>
+                            <div>华为 Mete 50E Pro</div>
+                        </div>
+                    </div>
+                    <div class="option">
+                        <img src="../img/prize_3.png" alt="">
+                        <div class="text">
+                            <div class="text-header">三等奖</div>
+                            <div>华为 Mete 50E Pro</div>
+                        </div>
+                    </div>
+                    <div class="option">
+                        <img src="../img/prize_4.png" alt="">
+                        <div class="text">
+                            <div class="text-header">四等奖</div>
+                            <div>华为 Mete 50E Pro</div>
+                        </div>
+                    </div>
+                    <div class="option">
+                        <img src="../img/prize_5.png" alt="">
+                        <div class="text">
+                            <div class="text-header">五等奖</div>
+                            <div>华为 Mete 50E Pro</div>
+                        </div>
+                    </div>
+                    <div class="option">
+                        <img src="../img/prize_6.png" alt="">
+                        <div class="text">
+                            <div class="text-header">六等奖</div>
+                            <div>华为 Mete 50E Pro</div>
+                        </div>
+                    </div>
+                    <div class="option">
+                        <img src="../img/prize_7.png" alt="">
+                        <div class="text">
+                            <div class="text-header">精美小礼品</div>
+                            <div>精美小礼品一份</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="right_box">
+        <canvas width="600" height="600"></canvas>
+    </div>
+
+</body>
+<script>
+    var canvas = document.querySelector('canvas')
+    var ctx = canvas.getContext('2d')
+    var img = new Image()
+    img.src = '../img/bg1.png'
+    img.onload = function () {
+        var pat = ctx.createPattern(img, 'repeat')
+        ctx.fillStyle = pat
+        ctx.fillRect(0, 0, 600, 600)
+
+        ctx.beginPath();
+        ctx.strokeStyle = "rgb(0,0,0,0)";
+        var rote = 45
+        for (var i = 0; i < 9; i++) {
+            if (i % 2 == 0) {
+                ctx.fillStyle = "#ffb81c"
+                ctx.moveTo(300, 300);
+                ctx.arc(300, 300, 230, 0, rote * Math.PI / 180, false)
+                ctx.fill();
+                ctx.beginPath
+            } else {
+                ctx.fillStyle = "#ffd831"
+                ctx.moveTo(300, 300);
+                ctx.arc(300, 300, 230, 0, rote * Math.PI / 180, false)
+                ctx.fill();
+                ctx.beginPath
+            }
+            rote += 45
+        }
+
+    }
+
+    // setInterval(fn, 1000);
+    // fn();
+    var show = 1
+    function fn() {
+        if (show == 1) {
+            var img = new Image()
+            img.src = '../img/bg1.png'
+            img.onload = function () {
+                canvas.width = 600
+                canvas.height = 600
+                var pat = ctx.createPattern(img, 'no-repeat')
+                ctx.fillStyle = pat
+                ctx.fillRect(0, 0, 600, 600)
+
+            }
+            show = 2
+        } else if (show == 2) {
+            var img = new Image()
+            img.src = '../img/bg2.png'
+            img.onload = function () {
+                canvas.width = 600
+                canvas.height = 600
+                var pat = ctx.createPattern(img, 'no-repeat')
+                ctx.fillStyle = pat
+                ctx.fillRect(0, 0, 600, 600, 0)
+
+            }
+            show = 1
+        }
+    }
+
+</script>
+
+</html>
